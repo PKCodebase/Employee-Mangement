@@ -51,23 +51,6 @@ spring.datasource.username=root
 
 spring.datasource.password=yourpassword
 
-
-
-📂 Folder Structure
-
-backend/
-  └── src/main/java/com/example
-      ├── controller
-      ├── service
-      ├── model
-      └── repository
-
-frontend/
-  ├── src/
-      ├── components/
-      ├── App.js
-      └── index.js
-      
 🙌 Author:
 
 Kaushik
