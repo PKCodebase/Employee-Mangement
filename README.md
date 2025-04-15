@@ -1,4 +1,5 @@
-📋 Employee Management System
+📋 Employee Management System:
+
 A full-stack CRUD application built using Spring Boot for the backend and React for the frontend. This app allows you to create, read, update, and delete employee data.
 
 🚀 Features
