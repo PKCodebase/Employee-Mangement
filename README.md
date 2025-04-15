@@ -43,7 +43,7 @@ git clone https://github.com/your-username/Employee-Management.git
 
 Navigate to the backend folder and open in IDE.
 
-Set up your MySQL database and update application.properties:
+#Set up your MySQL database and update application.properties:
 
 spring.datasource.url=jdbc:mysql://localhost:3306/your-db
 
