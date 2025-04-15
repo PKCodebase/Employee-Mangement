@@ -49,21 +49,27 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee updateEmployee(Employee employee) {
-        Employee existingEmployee = getEmployeeById(employee.getId());
-        existingEmployee.setName(employee.getName());
-        existingEmployee.setEmail(employee.getEmail());
-        existingEmployee.setPhone(employee.getPhone());
-        existingEmployee.setDepartment(employee.getDepartment());
-        return employeeRepository.save(existingEmployee);
+    public Employee updateEmployeeById(Long id, Employee employee) {
+        Optional<Employee> existingEmployee = employeeRepository.findById(id);
+        if(existingEmployee.isPresent()){
+            Employee updateEmployee = existingEmployee.get();
+            updateEmployee.setName(employee.getName());
+            updateEmployee.setEmail(employee.getEmail());
+            updateEmployee.setDepartment(employee.getDepartment());
+            updateEmployee.setPhone(employee.getPhone());
+            return employeeRepository.save(updateEmployee);
+        }
+        return null;
     }
 
+
     @Override
-    public Optional<String> deleteEmployee(Long id) {
-        return employeeRepository.findById(id).map(emp -> {
-            employeeRepository.delete(emp);
-            return Optional.of("Employee deleted successfully");
-        }).orElseThrow(() -> new RuntimeException("Employee not found"));
+    public void deleteEmployee(Long id) {
+
+      if(!employeeRepository.existsById(id)){
+          throw new EmployeeNotFoundException("Employee not found with id: " + id);
+      }
+      employeeRepository.deleteById(id);
     }
 
 

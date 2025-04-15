@@ -3,14 +3,17 @@ package com.PkCodebase.Employe.Management.controller;
 import com.PkCodebase.Employe.Management.entity.Employee;
 import com.PkCodebase.Employe.Management.service.impl.EmployeeServiceImpl;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.PkCodebase.Employe.Management.exception.EmployeeNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
 public class EmployeeController {
 
 
@@ -41,18 +44,36 @@ public class EmployeeController {
     }
 
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id,
-                                                   @Valid @RequestBody Employee employee) {
-        employee.setId(id); // Set ID from path variable
-        Employee updatedEmployee = employeeServiceImpl.updateEmployee(employee);
-        return ResponseEntity.ok(updatedEmployee);
-    }
+
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteEmployee(@PathVariable Long id) {
-        Optional<String> message = employeeServiceImpl.deleteEmployee(id);
-        return ResponseEntity.ok(message.orElse("Employee deleted Successfully")); // HTTP 200 OK
+    public ResponseEntity<?> deleteEmployee(@PathVariable Long id) {
+        try{
+            employeeServiceImpl.deleteEmployee(id);
+            return new  ResponseEntity<>("Employee with id " + id + "deleted Successfully " , HttpStatus.OK);
+
+        }catch(EmployeeNotFoundException e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getEmployeeById(@PathVariable Long id) {
+        Employee employee = employeeServiceImpl.getEmployeeById(id);
+        if(employee == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee not found with id: " + id);
+        }
+        return ResponseEntity.ok(employee);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateEmployee(@PathVariable Long id,
+                                                   @Valid @RequestBody Employee employee) {
+        Employee updatedEmployee = employeeServiceImpl.updateEmployeeById(id,employee);
+        if(updatedEmployee == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee not found with id: " + id);
+        }
+        return ResponseEntity.ok(updatedEmployee);
     }
 }
