@@ -2,7 +2,9 @@
 
 A full-stack CRUD application built using Spring Boot for the backend and React for the frontend. This app allows you to create, read, update, and delete employee data.
 
-🚀 Features
+
+🚀 Features:
+
 Add new employees
 
 View employee list
@@ -15,7 +17,9 @@ Responsive UI with React Bootstrap
 
 RESTful APIs with Spring Boot
 
-🛠️ Tech Stack
+
+🛠️ Tech Stack:
+
 Frontend:
 
 React
@@ -23,6 +27,7 @@ React
 React Router
 
 Bootstrap / React-Bootstrap
+
 
 Backend:
 
@@ -34,6 +39,8 @@ MySQL
 
 REST API
 
+
+
 🔧 Setup Instructions:
 
 Backend (Spring Boot)
@@ -42,7 +49,7 @@ Clone the repository:
 
 git clone https://github.com/your-username/Employee-Management.git
 
-Navigate to the backend folder and open in IDE.
+
 
 #Set up your MySQL database and update application.properties:
 
