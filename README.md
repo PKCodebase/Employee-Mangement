@@ -54,6 +54,6 @@ spring.datasource.password=yourpassword
 
 🙌 Author:
 
-Kaushik
+Kaushik Prasad
 
 Feel free to connect with me on LinkedIn or explore my GitHub for more projects.
