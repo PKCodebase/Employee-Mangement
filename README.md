@@ -29,6 +29,7 @@ React Router
 Bootstrap / React-Bootstrap
 
 
+
 Backend:
 
 Spring Boot
@@ -38,6 +39,7 @@ Spring Data JPA
 MySQL
 
 REST API
+
 
 
 
@@ -58,6 +60,8 @@ spring.datasource.url=jdbc:mysql://localhost:3306/your-db
 spring.datasource.username=root
 
 spring.datasource.password=yourpassword
+
+
 
 🙌 Author:
 
